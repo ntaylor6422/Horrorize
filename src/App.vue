@@ -46,22 +46,22 @@
           <div class="formstyle">
             <v-card-title>Register</v-card-title>
             <v-form class="formstyle">
-              <label for="emailInput">Email</label>
+              <label for="emailInputSign">Email</label>
               <input
                 type="email"
-                id="emailInput"
+                id="emailInputSign"
                 class="inputClass"
                 v-model="signEmail"
               />
-              <label for="displayInput">Display Name</label>
+              <label for="displayInputSign">Display Name</label>
               <input
                 type="text"
-                id="displayInput"
+                id="displayInputSign"
                 class="inputClass"
                 v-model="signDisplay"
               />
-              <label for="passInput">Password</label>
-              <input type="password" id="passInput" class="inputClass" />
+              <label for="passInputSign">Password</label>
+              <input type="password" id="passInputSign" class="inputClass" />
               <label for="passInputTwo">Repeat Password</label>
               <input
                 type="password"
@@ -133,7 +133,7 @@ export default {
     },
     login: function() {
       axios
-        .post("/user/login", {
+        .post("/users/login", {
           email: this.logEmail,
           password: this.logPass,
         })
@@ -144,7 +144,7 @@ export default {
     },
     signup: function() {
       axios
-        .post("/user/create", {
+        .post("/users/create", {
           email: this.signEmail,
           displayname: this.signDisplay,
           password: this.signPass,
