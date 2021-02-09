@@ -1,16 +1,21 @@
 <template>
   <v-app app>
-    <v-app-bar app dark>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+    <v-app-bar app dark clipped-left>
+      <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="d-flex align-center">
         Horrorize
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <input type="text" placeholder="Search Movies" class="inputClass" />
     </v-app-bar>
+    <v-navigation-drawer app clipped dark v-model="drawer">
+      <v-list nav>
+        <v-list-item link>Log in</v-list-item>
+        <v-list-item link>Register</v-list-item>
+      </v-list>
+    </v-navigation-drawer>
     <v-main app>
       <input type="text" ref="searchInput" />
-      <!-- <div>{{ movies }}</div> -->
       <List v-if="list" />
       <Movie v-else />
     </v-main>
@@ -29,9 +34,6 @@ export default {
     Movie,
   },
   computed: {
-    // movie: function() {
-    //   return this.$store.state.movie;
-    // },
     movies: function() {
       return this.$store.state.movies;
     },
@@ -45,7 +47,7 @@ export default {
   },
 
   data: () => ({
-    //
+    drawer: false,
   }),
   methods: {
     getMovies: function() {
@@ -57,6 +59,9 @@ export default {
     },
     movieConfig: function() {
       this.$store.dispatch("getApiConfig");
+    },
+    toggleDrawer: function() {
+      this.drawer = !this.drawer;
     },
   },
 };

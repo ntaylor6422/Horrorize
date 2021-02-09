@@ -54,10 +54,6 @@ const userSchema = new mongoose.Schema({
 });
 
 const movieSchema = new mongoose.Schema({
-  movieid: {
-    type: Number,
-    required: true,
-  },
   movietitle: {
     type: String,
     required: true,
@@ -65,6 +61,7 @@ const movieSchema = new mongoose.Schema({
   comments: {
     type: [commentSchema],
   },
+  ratings: [Number],
   releasedate: Date,
   summary: {
     type: String,

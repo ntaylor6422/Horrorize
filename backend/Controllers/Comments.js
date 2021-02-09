@@ -2,7 +2,7 @@ const { User, Comment } = require("../models.js");
 
 exports.createComment = async (req, res) => {
   try {
-    const newComment = await Comment.create(req.params.id);
+    const newComment = await Comment.create(req.body);
     const user = await User.findById(req.body.user_id);
     user.comments.push(newComment);
     res.status(201).json({

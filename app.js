@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const { checkToken } = require("./auth");
 const path = require("path");
 const apiRoutes = require("./routes/allRoutes");
 const users = require("./routes/users");
@@ -14,6 +15,8 @@ app.use(express.static(path.resolve(__dirname, ".", "dist")));
 app.use("/api/", apiRoutes);
 app.use("/users", users);
 app.use("/movie", movies);
+
+app.get("/api", checkToken);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, ".", "dist", "index.html"));
