@@ -1,7 +1,10 @@
 const jwt = require("jsonwebtoken");
 
 const checkToken = (req, res, next) => {
-  const token = req.headers["x-access-token"] || req.headers["authorization"];
+  const token =
+    req.headers ||
+    req.headers["x-access-token"] ||
+    req.headers["authorization"];
   if (token.startsWith("Bearer ")) {
     token = token.slice(7, token.length);
   }

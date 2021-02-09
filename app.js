@@ -9,10 +9,10 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.get("/api", checkToken());
 
 app.use(express.static(path.resolve(__dirname, ".", "dist")));
 
-app.get("/api/", checkToken());
 app.use("/api/", apiRoutes);
 app.use("/users", users);
 app.use("/movie", movies);
