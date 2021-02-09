@@ -3,7 +3,7 @@ const { Comment, Movie } = require("../models.js");
 exports.createComment = async (req, res) => {
   try {
     const token = req.decoded;
-    console.log(token);
+    console.log(req.body);
     const movie = await Movie.findOne({ movieid: req.params.id });
     const newComment = await Comment.create(req.body);
     movie.comments.push(newComment);
@@ -29,6 +29,26 @@ exports.getAllComments = async (req, res) => {
     const comments = await Comment.find({
       displayname: req.params.displayname,
     });
+    res.status(201).json({
+      status: "Success",
+      results: comments.length,
+      data: {
+        comments,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+};
+
+exports.getCommentsByMovieId = async (req, res) => {
+  try {
+    const comments = await Comment.findMany({ movieid: req.params.movieid });
+
     res.status(201).json({
       status: "Success",
       results: comments.length,

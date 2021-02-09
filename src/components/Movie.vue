@@ -66,6 +66,7 @@ export default {
   },
   methods: {
     makeComment: async function() {
+      console.log("reached methods in Movie.vue");
       const comment = await axios.post(`/movie/${this.movie.id}/comment`, {
         movieid: this.movie.id,
         movietitle: this.movie.title,
@@ -86,7 +87,6 @@ export default {
       console.log(rating);
     },
     loadHandler: function() {
-      console.log("fired");
       this.loading = false;
     },
     handleBack: function() {

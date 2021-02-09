@@ -29,25 +29,6 @@
         </v-card>
       </v-flex>
     </v-layout>
-
-    <!-- <v-card
-      v-for="movie in movies"
-      :key="movie.original_name"
-      @click="toggleList(movie)"
-      class="justify-space-between"
-    >
-      <v-col>
-        <img :src="baseUrl + size[0] + movie.poster_path" :alt="movie.title" />
-      </v-col>
-      <v-col>
-        <v-card-title>{{
-          movie.original_title ? movie.original_title : movie.original_name
-        }}</v-card-title>
-        <v-card-subtitle>
-          {{ movie.release_date ? movie.release_date : movie.first_air_date }}
-        </v-card-subtitle>
-      </v-col>
-    </v-card> -->
   </v-container>
 </template>
 
