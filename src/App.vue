@@ -69,7 +69,7 @@
                 class="inputClass"
                 v-model="signPass"
               />
-              <v-btn @click="handleLogin" light class="signBtn">Sign up</v-btn>
+              <v-btn @click="handleSignup" light class="signBtn">Sign up</v-btn>
             </v-form>
           </div>
         </v-card>
@@ -131,13 +131,13 @@ export default {
     toggleLog: function() {
       this.signin = !this.signin;
     },
-    login: async function() {
+    handleLogin: async function() {
       await axios.post("/users/login", {
         email: this.logEmail,
         password: this.logPass,
       });
     },
-    signup: async function() {
+    handleSignup: async function() {
       await axios.post("/users/create", {
         email: this.signEmail,
         displayname: this.signDisplay,
