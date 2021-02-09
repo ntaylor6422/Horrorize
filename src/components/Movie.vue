@@ -18,7 +18,13 @@
         </section>
         <v-divider></v-divider>
         <h1>Comment and Rate</h1>
-        <v-rating hover dark></v-rating>
+        <v-rating
+          hover
+          dark
+          clearable
+          v-model="ratingNumber"
+          @click.native="ratingHandler"
+        ></v-rating>
         <div>
           <v-textarea outlined v-model="commentText"></v-textarea>
           <v-btn @click="makeComment">Comment</v-btn>
@@ -31,10 +37,12 @@
 
 <script>
 // import ReviewCard from "./ReviewCard";
+const axios = require("axios");
 export default {
   components: {},
   data: () => ({
     commentText: "",
+    ratingNumber: null,
   }),
   computed: {
     movie: function() {
@@ -52,6 +60,17 @@ export default {
   },
   methods: {
     makeComment: function() {},
+    ratingHandler: async function() {
+      const rating = await axios.post(
+        `/movie/${this.$store.state.movie.title}/rating`,
+        {
+          movietitle: this.$store.state.movie.title,
+          rating: this.ratingNumber,
+          displayname: "ntaylor2276",
+        }
+      );
+      console.log(rating);
+    },
   },
 };
 </script>

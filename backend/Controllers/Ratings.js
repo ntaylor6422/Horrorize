@@ -3,7 +3,7 @@ const { User, Rating } = require("../models.js");
 exports.createRating = async (req, res) => {
   try {
     const newRating = await Rating.create(req.body);
-    const user = await User.findById(req.body.user_id);
+    const user = await User.findOne({ displayname: req.body.displayname });
     user.ratings.push(newRating);
 
     res.status(201).json({

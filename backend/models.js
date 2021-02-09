@@ -9,8 +9,8 @@ const ratingSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  userid: {
-    type: Number,
+  displayname: {
+    type: String,
     required: true,
   },
 });
