@@ -2,8 +2,9 @@ const { User, Comment } = require("../models.js");
 
 exports.createComment = async (req, res) => {
   try {
+    const token = req.decoded;
     const newComment = await Comment.create(req.body);
-    const user = await User.findById(req.body.user_id);
+    const user = await User.findById();
     user.comments.push(newComment);
     res.status(201).json({
       status: "Success",

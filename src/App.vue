@@ -6,7 +6,13 @@
         Horrorize
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <input type="text" placeholder="Search Movies" class="inputClass" />
+      <input
+        type="text"
+        placeholder="Search Movies"
+        class="inputClass"
+        v-model="searchInput"
+        @change="searchMovie"
+      />
     </v-app-bar>
     <v-navigation-drawer app clipped dark v-model="drawer">
       <v-list nav>
@@ -15,7 +21,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-main app>
-      <input type="text" ref="searchInput" />
+      <input type="text" />
       <List v-if="list" />
       <Movie v-else />
     </v-main>
@@ -48,14 +54,14 @@ export default {
 
   data: () => ({
     drawer: false,
+    searchInput: "",
   }),
   methods: {
     getMovies: function() {
       this.$store.dispatch("getHorrors");
     },
     searchMovie: function() {
-      console.log(this.$refs.searchInput.value);
-      this.$store.dispatch("getMovie", this.$refs.searchInput.value);
+      this.$store.dispatch("getMovie", this.searchInput);
     },
     movieConfig: function() {
       this.$store.dispatch("getApiConfig");
@@ -71,5 +77,6 @@ export default {
 .inputClass {
   border: 1px solid rgb(126, 66, 66);
   border-radius: 3px;
+  color: white;
 }
 </style>

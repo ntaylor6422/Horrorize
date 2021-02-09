@@ -20,21 +20,22 @@
         <h1>Comment and Rate</h1>
         <v-rating hover dark></v-rating>
         <div>
-          <v-textarea outlined></v-textarea>
-          <v-btn>Comment</v-btn>
+          <v-textarea outlined v-model="commentText"></v-textarea>
+          <v-btn @click="makeComment">Comment</v-btn>
         </div>
-        <ReviewCard />
+        <!-- <ReviewCard /> -->
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import ReviewCard from "./ReviewCard";
+// import ReviewCard from "./ReviewCard";
 export default {
-  components: {
-    ReviewCard,
-  },
+  components: {},
+  data: () => ({
+    commentText: "",
+  }),
   computed: {
     movie: function() {
       return this.$store.state.movie;
@@ -48,6 +49,9 @@ export default {
     size: function() {
       return this.$store.state.apiSize;
     },
+  },
+  methods: {
+    makeComment: function() {},
   },
 };
 </script>

@@ -43,9 +43,10 @@ export default new Vuex.Store({
   },
   actions: {
     getMovie: async ({ commit }, title) => {
-      const url = `https://api.themoviedb.org/3/search/movie?api_key=fa47395aee6257d86b59cef66174b632&language=en-US&query=${title}&page=1&include_adult=false`;
+      const newTitle = title.split(" ").join("%20");
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=fa47395aee6257d86b59cef66174b632&language=en-US&query=${newTitle}&page=1&include_adult=false`;
       const movie = await axios.get(url);
-      commit("setMovie", movie.data);
+      commit("setMultiMovies", movie.data.results);
     },
     getMovieById: async ({ commit }, id) => {
       const url = `https://api.themoviedb.org/3/movie/${id}?api_key=fa47395aee6257d86b59cef66174b632&language=en-US`;
@@ -68,7 +69,6 @@ export default new Vuex.Store({
       const url =
         "https://api.themoviedb.org/3/configuration?api_key=fa47395aee6257d86b59cef66174b632";
       const movieConfig = await axios.get(url);
-      console.log(movieConfig.data);
       commit("setMovieConfig", movieConfig.data);
       commit("setBaseUrl", movieConfig.data.images.base_url);
       commit("setSize", movieConfig.data.images.poster_sizes);
