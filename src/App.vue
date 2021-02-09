@@ -16,12 +16,64 @@
     </v-app-bar>
     <v-navigation-drawer app clipped dark v-model="drawer">
       <v-list nav>
-        <v-list-item link>Log in</v-list-item>
-        <v-list-item link>Register</v-list-item>
+        <v-list-item link @click="toggleLog">Log in</v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-main app>
-      <input type="text" />
+      <v-dialog dark v-model="signin">
+        <v-card class="login">
+          <div class="formstyle mb-3">
+            <v-card-title>Log in</v-card-title>
+            <v-form class="formstyle">
+              <label for="emailInput">Email</label>
+              <input
+                type="email"
+                id="emailInput"
+                class="inputClass"
+                v-model="logEmail"
+              />
+              <label for="passInput">Password</label>
+              <input
+                type="password"
+                id="passInput"
+                class="inputClass"
+                v-model="logPass"
+              />
+              <v-btn @click="handleLogin" light class="signBtn">Log in</v-btn>
+            </v-form>
+          </div>
+          <v-divider></v-divider>
+          <div class="formstyle">
+            <v-card-title>Register</v-card-title>
+            <v-form class="formstyle">
+              <label for="emailInput">Email</label>
+              <input
+                type="email"
+                id="emailInput"
+                class="inputClass"
+                v-model="signEmail"
+              />
+              <label for="displayInput">Display Name</label>
+              <input
+                type="text"
+                id="displayInput"
+                class="inputClass"
+                v-model="signDisplay"
+              />
+              <label for="passInput">Password</label>
+              <input type="password" id="passInput" class="inputClass" />
+              <label for="passInputTwo">Repeat Password</label>
+              <input
+                type="password"
+                id="passInputTwo"
+                class="inputClass"
+                v-model="signPass"
+              />
+              <v-btn @click="handleLogin" light class="signBtn">Sign up</v-btn>
+            </v-form>
+          </div>
+        </v-card>
+      </v-dialog>
       <List v-if="list" />
       <Movie v-else />
     </v-main>
@@ -31,6 +83,7 @@
 <script>
 import List from "./components/List";
 import Movie from "./components/Movie";
+const axios = require("axios");
 
 export default {
   name: "App",
@@ -55,6 +108,12 @@ export default {
   data: () => ({
     drawer: false,
     searchInput: "",
+    signin: null,
+    logEmail: "",
+    logPass: "",
+    signEmail: "",
+    signPass: "",
+    signDisplay: "",
   }),
   methods: {
     getMovies: function() {
@@ -69,6 +128,32 @@ export default {
     toggleDrawer: function() {
       this.drawer = !this.drawer;
     },
+    toggleLog: function() {
+      this.signin = !this.signin;
+    },
+    login: function() {
+      axios
+        .post("/user/login", {
+          email: logEmail,
+          password: logPass,
+        })
+        .then((client) => {
+          console.log("signed in", client);
+        })
+        .catch((err) => console.log(err));
+    },
+    signup: function() {
+      axios
+        .post("/user/create", {
+          email: signEmail,
+          displayname: signDisplay,
+          password: signPass,
+        })
+        .then((client) => {
+          console.log("Created User", client);
+        })
+        .catch((err) => console.log(err));
+    },
   },
 };
 </script>
@@ -77,6 +162,28 @@ export default {
 .inputClass {
   border: 1px solid rgb(126, 66, 66);
   border-radius: 3px;
+  color: black;
+  background: white;
+  max-width: 500px;
+  min-width: 250px;
+}
+
+label,
+input {
   color: white;
+  max-width: 500px;
+  margin: 7px;
+}
+.formstyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.signBtn {
+  margin: 7px;
 }
 </style>

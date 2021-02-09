@@ -1,13 +1,18 @@
 <template>
-  <v-container>
-    <v-row justify="center">
-      <h1>{{ movie.title }}</h1>
-      <v-spacer></v-spacer>
+  <v-container class="justify-center">
+    <v-row class="ml-3 mr-3 mt-5 mb-5 justify-space-between">
+      <v-btn @click="handleBack">Back</v-btn>
+      <h1 class="center">{{ movie.title }}</h1>
       <h2>{{ movie.release_date }}</h2>
     </v-row>
-    <v-row>
+    <v-row class="justify-center">
       <v-col>
-        <img :src="baseUrl + size[3] + movie.poster_path" />
+        <div class="imgCon">
+          <img
+            :src="baseUrl + size[3] + movie.poster_path"
+            v-on:load="loadHandler"
+          />
+        </div>
       </v-col>
       <v-col>
         <section class="mb-6">
@@ -41,6 +46,7 @@ const axios = require("axios");
 export default {
   components: {},
   data: () => ({
+    loading: true,
     commentText: "",
     ratingNumber: null,
   }),
@@ -71,8 +77,20 @@ export default {
       );
       console.log(rating);
     },
+    loadHandler: function() {
+      console.log("fired");
+      this.loading = false;
+    },
+    handleBack: function() {
+      this.$store.dispatch("setListView");
+    },
   },
 };
 </script>
 
-<style></style>
+<style>
+.imgCon {
+  display: flex;
+  justify-content: center;
+}
+</style>

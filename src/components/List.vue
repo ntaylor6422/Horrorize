@@ -1,17 +1,53 @@
 <template>
-  <v-container>
-    <v-card
+  <v-container fluid grid-list-md>
+    <!-- xs = 600px full screen (12) -->
+    <!-- md = 600px or more. half of the screen (6) -->
+    <v-layout row wrap>
+      <v-flex
+        xs12
+        md6
+        v-for="movie in movies"
+        :key="movie.original_name"
+        @click="toggleList(movie)"
+        class="justify-space-between"
+      >
+        <v-card class="cardCon" hover>
+          <img
+            :src="baseUrl + size[0] + movie.poster_path"
+            :alt="movie.title"
+          />
+          <div class="cardInfo">
+            <v-card-title>{{
+              movie.original_title ? movie.original_title : movie.original_name
+            }}</v-card-title>
+            <v-card-subtitle>
+              {{
+                movie.release_date ? movie.release_date : movie.first_air_date
+              }}
+            </v-card-subtitle>
+          </div>
+        </v-card>
+      </v-flex>
+    </v-layout>
+
+    <!-- <v-card
       v-for="movie in movies"
       :key="movie.original_name"
       @click="toggleList(movie)"
+      class="justify-space-between"
     >
-      <v-card-title>{{
-        movie.original_title ? movie.original_title : movie.original_name
-      }}</v-card-title>
-      <v-card-subtitle>
-        {{ movie.release_date ? movie.release_date : movie.first_air_date }}
-      </v-card-subtitle>
-    </v-card>
+      <v-col>
+        <img :src="baseUrl + size[0] + movie.poster_path" :alt="movie.title" />
+      </v-col>
+      <v-col>
+        <v-card-title>{{
+          movie.original_title ? movie.original_title : movie.original_name
+        }}</v-card-title>
+        <v-card-subtitle>
+          {{ movie.release_date ? movie.release_date : movie.first_air_date }}
+        </v-card-subtitle>
+      </v-col>
+    </v-card> -->
   </v-container>
 </template>
 
@@ -32,7 +68,7 @@ export default {
       return this.$store.state.apiBaseUrl;
     },
     size: function() {
-      return this.$store.state.size;
+      return this.$store.state.apiSize;
     },
   },
   methods: {
@@ -52,3 +88,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.cardCon {
+  display: flex;
+  justify-content: space-evenly;
+  min-height: 150px;
+}
+.cardInfo {
+  width: 300px;
+}
+</style>
