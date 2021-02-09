@@ -131,28 +131,18 @@ export default {
     toggleLog: function() {
       this.signin = !this.signin;
     },
-    login: function() {
-      axios
-        .post("/users/login", {
-          email: this.logEmail,
-          password: this.logPass,
-        })
-        .then((client) => {
-          console.log("signed in", client);
-        })
-        .catch((err) => console.log(err));
+    login: async function() {
+      await axios.post("/users/login", {
+        email: this.logEmail,
+        password: this.logPass,
+      });
     },
-    signup: function() {
-      axios
-        .post("/users/create", {
-          email: this.signEmail,
-          displayname: this.signDisplay,
-          password: this.signPass,
-        })
-        .then((client) => {
-          console.log("Created User", client);
-        })
-        .catch((err) => console.log(err));
+    signup: async function() {
+      await axios.post("/users/create", {
+        email: this.signEmail,
+        displayname: this.signDisplay,
+        password: this.signPass,
+      });
     },
   },
 };
