@@ -134,8 +134,8 @@ export default {
     login: function() {
       axios
         .post("/user/login", {
-          email: logEmail,
-          password: logPass,
+          email: this.logEmail,
+          password: this.logPass,
         })
         .then((client) => {
           console.log("signed in", client);
@@ -145,9 +145,9 @@ export default {
     signup: function() {
       axios
         .post("/user/create", {
-          email: signEmail,
-          displayname: signDisplay,
-          password: signPass,
+          email: this.signEmail,
+          displayname: this.signDisplay,
+          password: this.signPass,
         })
         .then((client) => {
           console.log("Created User", client);
