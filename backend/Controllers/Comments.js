@@ -3,7 +3,8 @@ const { Comment, Movie } = require("../models.js");
 exports.createComment = async (req, res) => {
   try {
     const token = req.decoded;
-    const movie = await Movie.findOne({ movieid: req.params.id });
+    console.log(token);
+    const movie = await Movie.findOne({ movieid: req.params.movieid });
     const newComment = await Comment.create(req.body);
     movie.comments.push(newComment);
     // const user = await User.findById();
