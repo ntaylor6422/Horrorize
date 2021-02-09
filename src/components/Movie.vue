@@ -66,12 +66,11 @@ export default {
   },
   methods: {
     makeComment: async function() {
-      console.log("reached methods in Movie.vue");
       const comment = await axios.post(`/movie/${this.movie.id}/comment`, {
         movieid: this.movie.id,
         movietitle: this.movie.title,
         comment: this.commentText,
-        datecomment: new Date(),
+        datecommented: new Date(),
       });
       console.log(comment);
     },
