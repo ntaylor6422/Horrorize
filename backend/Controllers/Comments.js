@@ -5,6 +5,7 @@ exports.createComment = async (req, res) => {
     const token = req.decoded;
     console.log(token);
     const movie = await Movie.findOne({ movieid: req.params.movieid });
+    console.log(movie);
     const newComment = await Comment.create(req.body);
     movie.comments.push(newComment);
     // const user = await User.findById();

@@ -12,7 +12,7 @@ app.use(cookieParser());
 
 app.use(express.static(path.resolve(__dirname, ".", "dist")));
 
-app.get("/api/", checkToken);
+app.get("/api/", checkToken());
 app.use("/api/", apiRoutes);
 app.use("/users", users);
 app.use("/movie", movies);
