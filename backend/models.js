@@ -53,12 +53,33 @@ const userSchema = new mongoose.Schema({
   ratings: [ratingSchema],
 });
 
+const movieSchema = new mongoose.Schema({
+  movieid: {
+    type: Number,
+    required: true,
+  },
+  movietitle: {
+    type: String,
+    required: true,
+  },
+  comments: {
+    type: [commentSchema],
+  },
+  releasedate: Date,
+  summary: {
+    type: String,
+    required: true,
+  },
+});
+
 const User = mongoose.model("User", userSchema);
 const Comment = mongoose.model("Comment", commentSchema);
 const Rating = mongoose.model("Rating", ratingSchema);
+const Movie = mongoose.model("Movie", movieSchema);
 
 module.exports = {
   User,
   Comment,
   Rating,
+  Movie,
 };
