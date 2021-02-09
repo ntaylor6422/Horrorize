@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const ratingSchema = new mongoose.Schema({
+  movieid: {
+    type: Number,
+    required: true,
+  },
   movietitle: {
     type: String,
     required: true,
@@ -16,6 +20,10 @@ const ratingSchema = new mongoose.Schema({
 });
 
 const commentSchema = new mongoose.Schema({
+  movieid: {
+    type: Number,
+    required: true,
+  },
   movietitle: {
     type: String,
     required: true,
@@ -54,6 +62,10 @@ const userSchema = new mongoose.Schema({
 });
 
 const movieSchema = new mongoose.Schema({
+  movieid: {
+    type: Number,
+    required: true,
+  },
   movietitle: {
     type: String,
     required: true,
@@ -62,11 +74,6 @@ const movieSchema = new mongoose.Schema({
     type: [commentSchema],
   },
   ratings: [Number],
-  releasedate: Date,
-  summary: {
-    type: String,
-    required: true,
-  },
 });
 
 const User = mongoose.model("User", userSchema);

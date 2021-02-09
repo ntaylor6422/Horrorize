@@ -35,9 +35,15 @@ export default {
     },
   },
   methods: {
-    toggleList(movie) {
+    async toggleList(movie) {
       this.$store.dispatch("setListView");
       this.sendMovie(movie);
+      await axios.post("/movie", {
+        movieid: movie.id,
+        movietitle: movie.title,
+        comments: [],
+        ratings: [],
+      });
     },
     sendMovie(movie) {
       this.$store.dispatch("getMovieById", movie.id);
