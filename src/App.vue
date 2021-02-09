@@ -9,7 +9,7 @@
       <input
         type="text"
         placeholder="Search Movies"
-        class="inputClass"
+        class="inputClass colors"
         v-model="searchInput"
         @change="searchMovie"
       />
@@ -175,5 +175,9 @@ input {
 
 .signBtn {
   margin: 7px;
+}
+
+.colors {
+  background: #3a3a3a;
 }
 </style>
