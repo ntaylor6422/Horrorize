@@ -1,6 +1,7 @@
 const { User, Rating } = require("../models.js");
 
 exports.createRating = async (req, res) => {
+  console.log(req.body);
   try {
     const newRating = await Rating.create(req.body);
     const user = await User.findOne({ displayname: req.body.displayname });
