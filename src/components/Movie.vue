@@ -66,9 +66,9 @@ export default {
   },
   methods: {
     makeComment: async function() {
-      const comment = await axios.post(`/movie/${movie.id}/comment`, {
-        movieid: movie.id,
-        movietitle: movie.title,
+      const comment = await axios.post(`/movie/${this.movie.id}/comment`, {
+        movieid: this.movie.id,
+        movietitle: this.movie.title,
         comment: this.commentText,
         datecomment: new Date(),
       });
