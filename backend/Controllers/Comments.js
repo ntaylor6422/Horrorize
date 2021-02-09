@@ -1,11 +1,14 @@
-const { User, Comment } = require("../models.js");
+const { Comment, Movie } = require("../models.js");
 
 exports.createComment = async (req, res) => {
   try {
     const token = req.decoded;
+    console.log(token);
+    const movie = await Movie.findOne({ movieid: req.params.id });
     const newComment = await Comment.create(req.body);
-    const user = await User.findById();
-    user.comments.push(newComment);
+    movie.comments.push(newComment);
+    // const user = await User.findById();
+    // user.comments.push(newComment);
     res.status(201).json({
       status: "Success",
       data: {

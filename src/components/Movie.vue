@@ -65,7 +65,15 @@ export default {
     },
   },
   methods: {
-    makeComment: function() {},
+    makeComment: async function() {
+      const comment = await axios.post(`/movie/${movie.id}/comment`, {
+        movieid: movie.id,
+        movietitle: movie.title,
+        comment: this.commentText,
+        datecomment: new Date(),
+      });
+      console.log(comment);
+    },
     ratingHandler: async function() {
       const rating = await axios.post(
         `/movie/${this.$store.state.movie.title}/rating`,

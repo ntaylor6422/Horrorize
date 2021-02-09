@@ -132,14 +132,12 @@ export default {
       this.signin = !this.signin;
     },
     handleLogin: async function() {
-      console.log("fired");
       await axios.post("/users/login", {
         email: this.logEmail,
         password: this.logPass,
       });
     },
     handleSignup: async function() {
-      console.log("fired");
       await axios.post("/users/create", {
         email: this.signEmail,
         displayname: this.signDisplay,
