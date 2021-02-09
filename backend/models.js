@@ -28,10 +28,6 @@ const commentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  displayname: {
-    type: String,
-    required: true,
-  },
   comment: {
     type: String,
     required: true,
@@ -65,6 +61,7 @@ const movieSchema = new mongoose.Schema({
   movieid: {
     type: Number,
     required: true,
+    unique: true,
   },
   movietitle: {
     type: String,
