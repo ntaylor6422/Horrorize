@@ -36,7 +36,7 @@
           <v-textarea outlined v-model="commentText"></v-textarea>
           <v-btn @click="makeComment">Comment</v-btn>
         </div>
-        <v-container v-if="dbMovie.data.movie.comments.length > 0">
+        <v-container>
           <v-card
             v-for="comment in dbMovie.data.movie.comments"
             :key="comment.id"

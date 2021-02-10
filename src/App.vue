@@ -104,7 +104,6 @@ export default {
     this.getMovies();
     this.movieConfig();
   },
-
   data: () => ({
     drawer: false,
     searchInput: "",

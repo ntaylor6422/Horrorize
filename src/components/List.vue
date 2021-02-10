@@ -53,15 +53,23 @@ export default {
     },
   },
   methods: {
-    async toggleList(movie) {
+    toggleList(movie) {
       this.$store.dispatch("setListView");
       this.sendMovie(movie);
-      await axios.post("/movie", {
-        movieid: movie.id,
-        movietitle: movie.title,
-        comments: [],
-        ratings: [],
-      });
+      axios
+        .post("/movie", {
+          movieid: movie.id,
+          movietitle: movie.title,
+          comments: [],
+          ratings: [],
+        })
+        .then(() => {
+          this.sendMovie(movie);
+        })
+        .catch((err) => {
+          this.sendMovie(movie);
+          console.log(err);
+        });
     },
     sendMovie(movie) {
       this.$store.dispatch("getDbMovie", movie.id);
