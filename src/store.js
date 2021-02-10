@@ -77,8 +77,8 @@ export default new Vuex.Store({
       const movie = await axios.get("/api/movie");
       commit("setDbMovie", movie.data);
     },
-    getDbMovie: async ({ commit }, movie) => {
-      const movie = await axios.get(`/movie/${movie}`);
+    getDbMovie: async ({ commit }, movieid) => {
+      const movie = await axios.get(`/movie/${movieid}`);
       commit("setDbMovie", movie.data);
     },
   },

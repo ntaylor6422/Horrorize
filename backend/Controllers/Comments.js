@@ -5,9 +5,9 @@ exports.createComment = async (req, res) => {
     const movie = await Movie.findOne({ movieid: req.params.movieid });
     console.log(movie);
     const newComment = await Comment.create(req.body);
-    movie.comments.push(newComment);
     // const user = await User.findById();
-    // user.comments.push(newComment);
+    movie.comments.push(newComment);
+    movie.save();
     res.status(201).json({
       status: "Success",
       data: {
