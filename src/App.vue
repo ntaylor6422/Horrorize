@@ -9,7 +9,7 @@
       <input
         type="text"
         placeholder="Search Movies"
-        class="inputClass colors"
+        class="colors"
         v-model="searchInput"
         @change="searchMovie"
       />
@@ -177,6 +177,14 @@ input {
 }
 
 .colors {
-  background: #3a3a3a;
+  border: 1px solid #7e4242;
+  border-radius: 3px;
+  background: #6662621e;
+  min-width: 100px;
+  color: white;
+}
+.colors::placeholder {
+  color: rgba(255, 255, 255, 0.404);
+  text-align: center;
 }
 </style>
