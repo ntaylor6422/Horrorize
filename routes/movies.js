@@ -5,7 +5,7 @@ const Rating = require("../backend/Controllers/Ratings");
 
 const router = express.Router();
 
-router.route("/:title").get(Movie.getMovieByTitle);
+// router.route("/:title").get(Movie.getMovieByTitle);
 router.route("/:movieid").get(Movie.getMovieById);
 router.route("/:movieid/comment").post(Comment.createComment);
 router.route("/:movieid/rating").post(Rating.createRating);
