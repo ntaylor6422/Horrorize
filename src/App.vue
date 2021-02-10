@@ -2,8 +2,8 @@
   <v-app app>
     <v-app-bar app dark clipped-left>
       <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
-      <v-toolbar-title class="d-flex align-center">
-        Horrorize
+      <v-toolbar-title class="d-flex align-center logo">
+        Horror<span class="logo-inner">ize</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <input
@@ -186,5 +186,13 @@ input {
 .colors::placeholder {
   color: rgba(255, 255, 255, 0.404);
   text-align: center;
+}
+.logo {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+.logo-inner {
+  font-weight: bold;
+  color: rgb(182, 89, 89);
 }
 </style>

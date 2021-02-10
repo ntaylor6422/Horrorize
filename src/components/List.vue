@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid grid-list-md>
+  <v-container fluid grid-list-md class="grey darken-2">
     <!-- xs = 600px full screen (12) -->
     <!-- md = 600px or more. half of the screen (6) -->
     <v-layout row wrap>
@@ -11,7 +11,7 @@
         @click="toggleList(movie)"
         class="justify-space-between"
       >
-        <v-card class="cardCon" hover>
+        <v-card class="cardCon" hover dark>
           <img
             :src="baseUrl + size[0] + movie.poster_path"
             :alt="movie.title"
