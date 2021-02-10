@@ -35,6 +35,7 @@
           <v-btn @click="makeComment">Comment</v-btn>
         </div>
         <v-container>
+          <div>{{ dbMovie }}</div>
           <v-card v-for="comment in dbMovie.comments" :key="comment.id">
             <v-card-title>{{ comment.movietitle }}</v-card-title>
             <p>{{ comment.comment }}</p>
@@ -83,14 +84,11 @@ export default {
       console.log(comment);
     },
     ratingHandler: async function() {
-      const rating = await axios.post(
-        `/movie/${this.$store.state.movie.title}/rating`,
-        {
-          movietitle: this.$store.state.movie.title,
-          rating: this.ratingNumber,
-          displayname: "ntaylor2276",
-        }
-      );
+      const rating = await axios.post(`/movie/${this.movie.id}/rating`, {
+        movietitle: this.$store.state.movie.title,
+        rating: this.ratingNumber,
+        displayname: "ntaylor2276",
+      });
       console.log(rating);
     },
     loadHandler: function() {

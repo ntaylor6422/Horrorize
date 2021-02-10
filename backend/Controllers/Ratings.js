@@ -1,11 +1,11 @@
-const { User, Rating } = require("../models.js");
+const { Rating, Movie } = require("../models.js");
 
 exports.createRating = async (req, res) => {
-  console.log(req.body);
   try {
     const newRating = await Rating.create(req.body);
-    const user = await User.findOne({ displayname: req.body.displayname });
-    user.ratings.push(newRating);
+    const movie = await Movie.findOne({ movieid: movieid });
+    movie.ratings.push(newRating);
+    movie.save();
 
     res.status(201).json({
       status: "Success",
