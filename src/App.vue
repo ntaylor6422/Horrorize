@@ -119,6 +119,7 @@ export default {
       this.$store.dispatch("getHorrors");
     },
     searchMovie: function() {
+      this.$store.state.list = true;
       this.$store.dispatch("getMovie", this.searchInput);
     },
     movieConfig: function() {

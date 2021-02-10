@@ -41,8 +41,17 @@
             v-for="comment in dbMovie.data.movie.comments"
             :key="comment.id"
             class="mb-1"
+            dark
           >
-            <v-card-title>{{ comment.datecommented }}</v-card-title>
+            <v-card-title>{{
+              new Date(comment.datecommented).toLocalTimeString(undefined, {
+                year: "numeric",
+                month: "numeric",
+                day: "numeric",
+                hours: "numeric",
+                minutes: "numeric",
+              })
+            }}</v-card-title>
             <v-card-text>{{ comment.comment }}</v-card-text>
           </v-card>
         </v-container>

@@ -37,9 +37,6 @@ exports.getMovieByTitle = async (req, res) => {
   }
 };
 exports.getMovieById = async (req, res) => {
-  console.log("----------vvvvvvvvvvvv----------------", req);
-  console.log("----------vvvvvvvvvvvv----------------", req.params);
-  console.log("----------vvvvvvvvvvvv----------------", req.params.movieid);
   try {
     const movie = await Movie.findOne({
       movieid: req.params.movieid,
