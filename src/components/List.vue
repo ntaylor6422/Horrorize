@@ -64,7 +64,6 @@ export default {
       });
     },
     sendMovie(movie) {
-      console.log("send movie in List", movie);
       this.$store.dispatch("getDbMovie", movie.id);
       this.$store.dispatch("getMovieById", movie.id);
     },

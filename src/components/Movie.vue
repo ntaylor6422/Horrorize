@@ -75,21 +75,19 @@ export default {
   },
   methods: {
     makeComment: async function() {
-      const comment = await axios.post(`/movie/${this.movie.id}/comment`, {
+      await axios.post(`/movie/${this.movie.id}/comment`, {
         movieid: this.movie.id,
         movietitle: this.movie.title,
         comment: this.commentText,
         datecommented: new Date(),
       });
-      console.log(comment);
     },
     ratingHandler: async function() {
-      const rating = await axios.post(`/movie/${this.movie.id}/rating`, {
+      await axios.post(`/movie/${this.movie.id}/rating`, {
         movietitle: this.$store.state.movie.title,
         rating: this.ratingNumber,
         displayname: "ntaylor2276",
       });
-      console.log(rating);
     },
     loadHandler: function() {
       this.loading = false;
