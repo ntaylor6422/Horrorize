@@ -123,7 +123,7 @@ export default {
   justify-content: center;
 }
 .textCon {
-  background: #6662621e;
+  background-color: #8886865b;
 }
 .textColors {
   color: white;

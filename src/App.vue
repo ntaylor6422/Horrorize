@@ -201,9 +201,9 @@ input {
   color: rgb(182, 89, 89);
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (max-width: 400px) {
   .logo {
-    font-size: 80%;
+    font-size: 1.2rem;
   }
 }
 </style>
