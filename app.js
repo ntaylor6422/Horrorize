@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.get("/api", checkToken());
+// app.get("/api", checkToken());
 
 app.use(express.static(path.resolve(__dirname, ".", "dist")));
 
