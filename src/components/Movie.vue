@@ -1,5 +1,5 @@
 <template>
-  <v-container class="justify-center">
+  <v-container class="justify-center textColors">
     <v-row class="ml-3 mr-3 mt-5 mb-5 justify-space-between">
       <v-btn @click="handleBack">Back</v-btn>
       <h1 class="center">{{ movie.title }}</h1>
@@ -33,7 +33,11 @@
           @click.native="ratingHandler"
         ></v-rating>
         <div>
-          <v-textarea outlined v-model="commentText"></v-textarea>
+          <v-textarea
+            outlined
+            v-model="commentText"
+            class="textCon"
+          ></v-textarea>
           <v-btn @click="makeComment">Comment</v-btn>
         </div>
         <v-container>
@@ -117,5 +121,11 @@ export default {
 .imgCon {
   display: flex;
   justify-content: center;
+}
+.textCon {
+  background: #6662621e;
+}
+.textColors {
+  color: white;
 }
 </style>

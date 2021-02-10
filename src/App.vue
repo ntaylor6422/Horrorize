@@ -194,6 +194,7 @@ input {
 .logo {
   font-size: 1.5rem;
   letter-spacing: 2px;
+  cursor: pointer;
 }
 .logo-inner {
   font-weight: bold;
