@@ -38,8 +38,10 @@
           <v-card
             v-for="comment in dbMovie.data.movie.comments"
             :key="comment.id"
+            class="mb-1"
           >
-            <v-card-title>{{ comment.comment }}</v-card-title>
+            <v-card-title>{{ comment.datecommented }}</v-card-title>
+            <v-card-text>{{ comment.datecommented }}</v-card-text>
           </v-card>
         </v-container>
       </v-col>
@@ -48,7 +50,6 @@
 </template>
 
 <script>
-// import ReviewCard from "./ReviewCard";
 const axios = require("axios");
 export default {
   components: {},
@@ -82,6 +83,7 @@ export default {
         comment: this.commentText,
         datecommented: new Date(),
       });
+      this.$store.dispatch("getDbMovie", this.movie.id);
     },
     ratingHandler: async function() {
       await axios.post(`/movie/${this.movie.id}/rating`, {
