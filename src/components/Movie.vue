@@ -35,10 +35,11 @@
           <v-btn @click="makeComment">Comment</v-btn>
         </div>
         <v-container>
-          <div>{{ dbMovie }}</div>
-          <v-card v-for="comment in dbMovie.comments" :key="comment.id">
-            <v-card-title>{{ comment.movietitle }}</v-card-title>
-            <p>{{ comment.comment }}</p>
+          <v-card
+            v-for="comment in dbMovie.data.movie.comments"
+            :key="comment.id"
+          >
+            <v-card-title>{{ comment.comment }}</v-card-title>
           </v-card>
         </v-container>
       </v-col>
