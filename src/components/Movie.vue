@@ -33,12 +33,8 @@
           @click.native="ratingHandler"
         ></v-rating>
         <div>
-          <v-textarea
-            outlined
-            v-model="commentText"
-            class="textCon"
-          ></v-textarea>
-          <v-btn @click="makeComment">Comment</v-btn>
+          <v-textarea outlined v-model="commentText" dark></v-textarea>
+          <v-btn @click="makeComment" dark>Comment</v-btn>
         </div>
         <v-container>
           <v-card
@@ -121,9 +117,6 @@ export default {
 .imgCon {
   display: flex;
   justify-content: center;
-}
-.textCon {
-  background-color: #8886865b;
 }
 .textColors {
   color: white;
