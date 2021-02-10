@@ -34,7 +34,12 @@
           <v-textarea outlined v-model="commentText"></v-textarea>
           <v-btn @click="makeComment">Comment</v-btn>
         </div>
-        <!-- <ReviewCard /> -->
+        <v-container>
+          <v-card v-for="comment in dbMovie.comments" :key="comment.id">
+            <v-card-title>{{ comment.movietitle }}</v-card-title>
+            <p>{{ comment.comment }}</p>
+          </v-card>
+        </v-container>
       </v-col>
     </v-row>
   </v-container>
@@ -62,6 +67,9 @@ export default {
     },
     size: function() {
       return this.$store.state.apiSize;
+    },
+    dbMovie: function() {
+      return this.$store.state.dbMovie;
     },
   },
   methods: {

@@ -5,6 +5,7 @@ const Comment = require("../backend/Controllers/Comments");
 const router = express.Router();
 
 router.route("/:title").get(controller.getMovieByTitle);
+router.route("/:movieid").get(controller.getMovieById);
 router.route("/:movieid/comment").post(Comment.createComment);
 router.route("/").post(controller.createMovie);
 

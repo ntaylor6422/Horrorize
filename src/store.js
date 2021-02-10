@@ -53,6 +53,9 @@ export default new Vuex.Store({
       const movie = await axios.get(url);
       commit("setMovie", movie.data);
     },
+    getDbMovie: async ({ commit }, movie) => {
+      const movie = await axios.get(`/`);
+    },
     getHorrors: async ({ commit }) => {
       const url =
         "https://api.themoviedb.org/3/search/multi?api_key=fa47395aee6257d86b59cef66174b632&language=en-US&query=horror&page=1&include_adult=false";
@@ -75,6 +78,10 @@ export default new Vuex.Store({
     },
     getMovieDetails: async ({ commit }) => {
       const movie = await axios.get("/api/movie");
+      commit("setDbMovie", movie.data);
+    },
+    getDbMovie: async ({ commit }, movie) => {
+      const movie = await axios.get(`/movie/${movie}`);
       commit("setDbMovie", movie.data);
     },
   },

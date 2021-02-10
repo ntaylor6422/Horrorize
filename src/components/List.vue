@@ -64,6 +64,7 @@ export default {
       });
     },
     sendMovie(movie) {
+      this.$store.dispatch("getDbMovie", movie.id);
       this.$store.dispatch("getMovieById", movie.id);
     },
   },

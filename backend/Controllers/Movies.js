@@ -18,10 +18,28 @@ exports.createMovie = async (req, res) => {
   }
 };
 
-exports.getMovieByTitle = async (req, res, next) => {
+exports.getMovieByTitle = async (req, res) => {
   try {
     const movie = await Movie.findOne({
       movietitle: req.params.title,
+    });
+    res.status(201).json({
+      data: {
+        movie,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+};
+exports.getMovieById = async (req, res) => {
+  try {
+    const movie = await Movie.findOne({
+      movieid: req.params.movieid,
     });
     res.status(201).json({
       data: {
