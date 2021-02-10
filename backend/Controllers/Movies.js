@@ -23,7 +23,7 @@ exports.getMovieByTitle = async (req, res) => {
     const movie = await Movie.findOne({
       movietitle: req.params.title,
     });
-    res.status(201).json({
+    res.status(200).json({
       data: {
         movie,
       },
@@ -37,11 +37,12 @@ exports.getMovieByTitle = async (req, res) => {
   }
 };
 exports.getMovieById = async (req, res) => {
+  console.log(req.params);
   try {
     const movie = await Movie.findOne({
       movieid: req.params.movieid,
     });
-    res.status(201).json({
+    res.status(200).json({
       data: {
         movie,
       },
