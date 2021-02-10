@@ -36,14 +36,14 @@
           <v-textarea outlined v-model="commentText"></v-textarea>
           <v-btn @click="makeComment">Comment</v-btn>
         </div>
-        <v-container>
+        <v-container v-if="dbMovie.data.movie.comments.length > 0">
           <v-card
             v-for="comment in dbMovie.data.movie.comments"
             :key="comment.id"
             class="mb-1"
           >
             <v-card-title>{{ comment.datecommented }}</v-card-title>
-            <v-card-text>{{ comment.datecommented }}</v-card-text>
+            <v-card-text>{{ comment.comment }}</v-card-text>
           </v-card>
         </v-container>
       </v-col>
