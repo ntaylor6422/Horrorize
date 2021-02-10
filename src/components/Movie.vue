@@ -22,7 +22,14 @@
           </p>
         </section>
         <v-divider></v-divider>
-        <h1>Comment and Rate</h1>
+        <h1>
+          Comment and Rate
+          {{
+            dbMovie.data.movie.ratings.reduce(
+              (acc, rating) => acc + rating.rating
+            ) / dbMovie.data.movie.ratings.length
+          }}
+        </h1>
         <v-rating
           hover
           dark
