@@ -44,7 +44,7 @@
             dark
           >
             <v-card-title>{{
-              new Date(comment.datecommented).toLocalTimeString(undefined, {
+              new Date(comment.datecommented).toLocaleTimeString(undefined, {
                 year: "numeric",
                 month: "numeric",
                 day: "numeric",

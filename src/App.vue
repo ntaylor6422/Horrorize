@@ -2,7 +2,7 @@
   <v-app app>
     <v-app-bar app dark clipped-left>
       <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
-      <v-toolbar-title class="d-flex align-center logo">
+      <v-toolbar-title class="d-flex align-center logo" @click="logoClick">
         Horror<span class="logo-inner">ize</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -143,6 +143,9 @@ export default {
         displayname: this.signDisplay,
         password: this.signPass,
       });
+    },
+    logoClick: function() {
+      this.$store.state.list = true;
     },
   },
 };
