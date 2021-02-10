@@ -19,7 +19,7 @@
         <v-list-item link @click="toggleLog">Log in</v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-main app>
+    <v-main app class="grey darken-2">
       <v-dialog dark v-model="signin">
         <v-card class="login">
           <div class="formstyle mb-3">
