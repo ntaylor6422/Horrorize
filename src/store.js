@@ -16,12 +16,7 @@ export default new Vuex.Store({
     dbMovie: {},
     logState: "Login",
     overlay: false,
-    user: {
-      email: "ldksf@fsdakf.com",
-      displayname: "coolguy",
-      comments: [],
-      ratings: [],
-    },
+    user: {},
   },
   mutations: {
     increment(state) {
@@ -34,7 +29,7 @@ export default new Vuex.Store({
       state.movies = movies;
     },
     setView(state, view) {
-      state.list = view;
+      state.view = view;
     },
     setMovieConfig(state, movieConfig) {
       state.movieConfig = movieConfig;

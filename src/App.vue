@@ -88,7 +88,7 @@ export default {
       this.$store.dispatch("getHorrors");
     },
     searchMovie: function() {
-      this.$store.state.list = true;
+      this.$store.dispatch("setView", "list");
       this.$store.dispatch("getMovie", this.searchInput);
     },
     movieConfig: function() {
@@ -106,7 +106,7 @@ export default {
       this.$store.dispatch("setLogState", "Register");
     },
     logoClick: function() {
-      this.$store.state.list = true;
+      this.$store.dispatch("setView", "list");
     },
     handleProfile: function() {
       this.$store.dispatch("setView", "profile");
