@@ -7,14 +7,25 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-card v-for="comment in user.comments" :key="comment.id">
-          <v-card-title>{{ comment.comment }}</v-card-title>
-        </v-card>
+        <v-expansion-panels accordion>
+          <v-expansion-panel>
+            <v-card v-for="comment in user.comments" :key="comment.id" dark>
+              <v-card-title>{{ comment.movietitle }}</v-card-title>
+              <v-card-subtitle>{{ comment.datecommented }}</v-card-subtitle>
+              <v-card-text>{{ comment.comment }}</v-card-text>
+            </v-card>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-col>
       <v-col>
-        <v-card v-for="rating in user.ratings" :key="rating.id">
-          <v-card-title>{{ rating.rating }}</v-card-title>
-        </v-card>
+        <v-expansion-panels accordion>
+          <v-expansion-panel>
+            <v-card v-for="rating in user.ratings" :key="rating.id" dark>
+              <v-card-title>{{ rating.movietitle }}</v-card-title>
+              <v-card-text>{{ rating.rating }}</v-card-text>
+            </v-card>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-col>
     </v-row>
   </v-container>

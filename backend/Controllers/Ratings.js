@@ -6,7 +6,8 @@ exports.createRating = async (req, res) => {
     const movie = await Movie.findOne({ movieid: req.body.movieid });
     const user = await User.findOne({ displayname: req.body.displayname });
     user.ratings.push(newRating);
-    movie.ratings.push(newRating);
+    user.save();
+    movie.ratings.push(newRating.rating);
     movie.save();
 
     res.status(201).json({
