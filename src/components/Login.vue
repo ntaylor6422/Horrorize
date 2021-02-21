@@ -50,8 +50,8 @@ export default {
         email: this.email,
         password: this.password,
       });
-      console.log(user.data);
-      this.$store.commit("setUser", user.data.user);
+      this.$store.commit("setUser", user.data.data.user);
+      this.handleClose();
     },
   },
 };

@@ -69,6 +69,7 @@ export default {
         displayname: this.displayname,
         password: this.password,
       });
+      this.handleClose();
     },
     handleClose: function() {
       this.$store.dispatch("setOverlay");
