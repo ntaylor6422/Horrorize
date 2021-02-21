@@ -3,6 +3,18 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { User } = require("../models");
 
+exports.getUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    res.status(201).json({
+      status: "Success",
+      data: user,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 exports.createUser = async (req, res) => {
   const { email, password, displayname } = req.body;
   try {
@@ -49,7 +61,6 @@ exports.login = async (req, res) => {
     expiresIn: "7d",
   });
 
-  console.log("token:", token);
   res.cookie("token", token, { httpOnly: true });
   res.status(200).json({
     status: "Success",

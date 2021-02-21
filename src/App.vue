@@ -107,6 +107,7 @@ export default {
     },
     handleProfile: function() {
       this.$store.dispatch("setView", "profile");
+      this.$store.dispatch("refreshUserData");
       this.toggleDrawer();
     },
   },

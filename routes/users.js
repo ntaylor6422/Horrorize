@@ -1,7 +1,9 @@
 const express = require("express");
-const { login, createUser } = require("../backend/Controllers/Users");
+const { login, createUser, getUser } = require("../backend/Controllers/Users");
 
 const router = express.Router();
+
+router.route("/:email").get(getUser);
 
 router.route("/login").post(login);
 

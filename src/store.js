@@ -100,5 +100,14 @@ export default new Vuex.Store({
     setLogState: ({ commit }, log) => {
       commit("setLogState", log);
     },
+    refreshUserData: async ({ commit, getters }) => {
+      const user = await axios.get(`/users/${getters("getUser").email}`);
+      commit("setUser", user.data.data.user);
+    },
+  },
+  getters: {
+    getUser: (state) => {
+      return state.user;
+    },
   },
 });
