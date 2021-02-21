@@ -16,7 +16,7 @@ export default new Vuex.Store({
     dbMovie: {},
     logState: "Login",
     overlay: false,
-    user: {},
+    user: null,
   },
   mutations: {
     increment(state) {
@@ -102,11 +102,12 @@ export default new Vuex.Store({
     },
     refreshUserData: async ({ commit }, person) => {
       const user = await axios.get(`/users/${person.email}`);
+      console.log(user.data);
       commit("setUser", user.data.user);
     },
     logout: async ({ commit }) => {
       await axios.get("/users/logout");
-      commit("setUser", {});
+      commit("setUser", null);
     },
   },
   getters: {
