@@ -91,7 +91,6 @@ export default new Vuex.Store({
     },
     getDbMovie: async ({ commit }, movieid) => {
       const movie = await axios.get(`/movie/${movieid}`);
-      console.log("from the getter in the store", movie);
       commit("setDbMovie", movie.data);
     },
     setOverlay: ({ commit }) => {
@@ -103,7 +102,7 @@ export default new Vuex.Store({
     refreshUserData: async ({ commit }, person) => {
       const user = await axios.get(`/users/${person.email}`);
       console.log(user.data);
-      commit("setUser", user.data.user);
+      commit("setUser", user.data.data);
     },
     logout: async ({ commit }) => {
       await axios.get("/users/logout");
