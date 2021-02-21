@@ -26,8 +26,8 @@
           <v-icon v-if="icons">mdi-phone</v-icon>
         </v-tab>
 
-        <v-tab-item v-for="comment in user.comments" :key="comment.id">
-          <v-card dark>
+        <v-tab-item>
+          <v-card v-for="comment in user.comments" :key="comment.id" dark>
             <v-card-title>{{ comment.movietitle }}</v-card-title>
             <v-card-subtitle>{{
               new Date(comment.datecommented).toLocaleTimeString(undefined, {
