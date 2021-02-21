@@ -77,11 +77,6 @@ export default {
   data: () => ({
     drawer: false,
     searchInput: "",
-    logEmail: "",
-    logPass: "",
-    signEmail: "",
-    signPass: "",
-    signDisplay: "",
   }),
   methods: {
     getMovies: function() {
@@ -100,16 +95,19 @@ export default {
     toggleLog: function() {
       this.$store.dispatch("setOverlay");
       this.$store.dispatch("setLogState", "Login");
+      this.toggleDrawer();
     },
     toggleReg: function() {
       this.$store.dispatch("setOverlay");
       this.$store.dispatch("setLogState", "Register");
+      this.toggleDrawer();
     },
     logoClick: function() {
       this.$store.dispatch("setView", "list");
     },
     handleProfile: function() {
       this.$store.dispatch("setView", "profile");
+      this.toggleDrawer();
     },
   },
 };

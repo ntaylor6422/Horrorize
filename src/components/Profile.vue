@@ -1,7 +1,10 @@
 <template>
   <v-container fluid>
     <v-row justify="center" align="center" class="mt-3 pa-5">
-      <h1>{{ user.displayname }}</h1>
+      <h1>
+        {{ splitNamed()[0]
+        }}<span class="logoStyle">{{ splitNamed()[1] }}</span>
+      </h1>
       <v-spacer></v-spacer>
       <h3>{{ user.email }}</h3>
     </v-row>
@@ -27,7 +30,12 @@
         </v-tab>
 
         <v-tab-item>
-          <v-card v-for="comment in user.comments" :key="comment.id" dark>
+          <v-card
+            v-for="comment in user.comments"
+            :key="comment.id"
+            dark
+            class="mb-3"
+          >
             <v-card-title>{{ comment.movietitle }}</v-card-title>
             <v-card-subtitle>{{
               new Date(comment.datecommented).toLocaleTimeString(undefined, {
@@ -41,32 +49,19 @@
             <v-card-text>{{ comment.comment }}</v-card-text>
           </v-card>
         </v-tab-item>
+
+        <v-tab-item>
+          <v-card
+            v-for="rating in user.ratings"
+            :key="rating.id"
+            dark
+            class="mb-3"
+          >
+            <v-card-title>{{ rating.movietitle }}</v-card-title>
+            <v-card-text>{{ rating.rating }}</v-card-text>
+          </v-card>
+        </v-tab-item>
       </v-tabs>
-      <!-- <v-expansion-panels accordion>
-          <v-expansion-panel>
-            <v-card v-for="comment in user.comments" :key="comment.id" dark>
-              <v-card-title>{{ comment.movietitle }}</v-card-title>
-              <v-card-subtitle>{{
-              new Date(comment.datecommented).toLocaleTimeString(undefined, {
-                year: "numeric",
-                month: "numeric",
-                day: "numeric",
-                hours: "numeric",
-                minutes: "numeric",
-              })
-            }}</v-card-subtitle>
-              <v-card-text>{{ comment.comment }}</v-card-text>
-            </v-card>
-          </v-expansion-panel>
-        </v-expansion-panels> -->
-      <!-- <v-expansion-panels accordion>
-          <v-expansion-panel>
-            <v-card v-for="rating in user.ratings" :key="rating.id" dark>
-              <v-card-title>{{ rating.movietitle }}</v-card-title>
-              <v-card-text>{{ rating.rating }}</v-card-text>
-            </v-card>
-          </v-expansion-panel>
-        </v-expansion-panels> -->
     </v-row>
   </v-container>
 </template>
@@ -84,7 +79,21 @@ export default {
       return this.$store.state.user;
     },
   },
+  methods: {
+    splitNamed: function() {
+      const len = this.user.displayname.length;
+      const half = Math.ceil(len / 2);
+      const firstHalf = this.user.displayname.split("").slice(0, half);
+      const secondHalf = this.user.displayname.split("").slice(half + 1, len);
+
+      return [firstHalf, secondHalf];
+    },
+  },
 };
 </script>
 
-<style></style>
+<style>
+.logoStyle {
+  color: rgb(182, 89, 89);
+}
+</style>
