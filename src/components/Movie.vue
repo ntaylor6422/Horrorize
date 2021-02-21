@@ -22,19 +22,21 @@
           </p>
         </section>
         <v-divider></v-divider>
-        <h1>
-          Comment and Rate
-        </h1>
-        <v-rating
-          hover
-          dark
-          clearable
-          v-model="ratingNumber"
-          @click.native="ratingHandler"
-        ></v-rating>
-        <div>
-          <v-textarea outlined v-model="commentText" dark></v-textarea>
-          <v-btn @click="makeComment" dark>Comment</v-btn>
+        <div v-if="user.displayname">
+          <h1>
+            Comment and Rate
+          </h1>
+          <v-rating
+            hover
+            dark
+            clearable
+            v-model="ratingNumber"
+            @click.native="ratingHandler"
+          ></v-rating>
+          <div>
+            <v-textarea outlined v-model="commentText" dark></v-textarea>
+            <v-btn @click="makeComment" dark>Comment</v-btn>
+          </div>
         </div>
         <v-container>
           <v-card
@@ -85,6 +87,9 @@ export default {
     dbMovie: function() {
       return this.$store.state.dbMovie;
     },
+    user: function() {
+      return this.$store.state.user;
+    },
   },
   methods: {
     makeComment: async function() {
@@ -97,11 +102,13 @@ export default {
       this.$store.dispatch("getDbMovie", this.movie.id);
     },
     ratingHandler: async function() {
-      await axios.post(`/movie/${this.movie.id}/rating`, {
-        movietitle: this.$store.state.movie.title,
+      const rating = {
+        movieid: this.movie.id,
+        movietitle: this.movie.title,
         rating: this.ratingNumber,
-        displayname: "ntaylor2276",
-      });
+        displayname: this.user.displayname,
+      };
+      await axios.post(`/movie/${this.movie.id}/rating`, rating);
     },
     loadHandler: function() {
       this.loading = false;

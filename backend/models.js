@@ -36,6 +36,10 @@ const commentSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  displayname: {
+    type: String,
+    required: true,
+  },
 });
 
 const userSchema = new mongoose.Schema({
