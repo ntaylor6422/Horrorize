@@ -2,9 +2,9 @@
   <v-container fluid>
     <v-row justify="center" align="center" class="mt-3 pa-5 white--text">
       <h1>
-        {{ user.displayname ? splitNamed(user.displayname)[0] : ""
+        {{ user ? splitNamed(user.displayname)[0] : ""
         }}<span class="logoStyle">{{
-          user.displayname ? splitNamed(user.displayname)[1] : ""
+          user ? splitNamed(user.displayname)[1] : ""
         }}</span>
       </h1>
       <v-spacer></v-spacer>
