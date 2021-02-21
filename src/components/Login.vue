@@ -51,7 +51,7 @@ export default {
         password: this.password,
       });
       console.log(user.data);
-      this.$store.commit("setUser", user.data);
+      this.$store.commit("setUser", user.data.user);
     },
   },
 };

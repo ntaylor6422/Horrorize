@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    list: true,
+    view: "profile",
     movie: {},
     movies: [],
     movieConfig: {},
@@ -16,7 +16,12 @@ export default new Vuex.Store({
     dbMovie: {},
     logState: "Login",
     overlay: false,
-    user: {},
+    user: {
+      email: "ldksf@fsdakf.com",
+      displayname: "coolguy",
+      comments: [],
+      ratings: [],
+    },
   },
   mutations: {
     increment(state) {
@@ -28,8 +33,8 @@ export default new Vuex.Store({
     setMultiMovies(state, movies) {
       state.movies = movies;
     },
-    setListView(state) {
-      state.list = !state.list;
+    setView(state, view) {
+      state.list = view;
     },
     setMovieConfig(state, movieConfig) {
       state.movieConfig = movieConfig;
@@ -74,8 +79,8 @@ export default new Vuex.Store({
     setMovie: ({ commit }, movie) => {
       commit("setMovie", movie);
     },
-    setListView: ({ commit }) => {
-      commit("setListView");
+    setView: ({ commit }, view) => {
+      commit("setView", view);
     },
     getApiConfig: async ({ commit }) => {
       const url =

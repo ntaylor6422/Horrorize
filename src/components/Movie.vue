@@ -107,7 +107,7 @@ export default {
       this.loading = false;
     },
     handleBack: function() {
-      this.$store.dispatch("setListView");
+      this.$store.dispatch("setView", "list");
     },
   },
 };

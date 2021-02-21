@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     toggleList(movie) {
-      this.$store.dispatch("setListView");
+      this.$store.dispatch("setView", "movie");
       this.sendMovie(movie);
       axios
         .post("/movie", {

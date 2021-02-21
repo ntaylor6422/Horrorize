@@ -19,15 +19,19 @@
         <v-list-item link @click="toggleLog">Login</v-list-item>
         <v-list-item link @click="toggleReg">Register</v-list-item>
       </v-list>
+      <v-list v-else nav>
+        <v-list-item>Welcome, {{ user.displayname }}</v-list-item>
+        <v-list-item link @click="handleProfile">Profile</v-list-item>
+      </v-list>
     </v-navigation-drawer>
     <v-overlay v-model="overlay">
       <Register v-if="logState === 'Register'" />
       <Login v-else-if="logState === 'Login'" />
-      <Profile v-else />
     </v-overlay>
     <v-main app class="grey darken-2">
-      <List v-if="list" />
-      <Movie v-else />
+      <List v-if="view === 'list'" />
+      <Movie v-else-if="view === 'movie'" />
+      <Profile v-else />
     </v-main>
   </v-app>
 </template>
@@ -53,8 +57,8 @@ export default {
     movies: function() {
       return this.$store.state.movies;
     },
-    list: function() {
-      return this.$store.state.list;
+    view: function() {
+      return this.$store.state.view;
     },
     logState: function() {
       return this.$store.state.logState;
@@ -103,6 +107,9 @@ export default {
     },
     logoClick: function() {
       this.$store.state.list = true;
+    },
+    handleProfile: function() {
+      this.$store.dispatch("setView", "profile");
     },
   },
 };
