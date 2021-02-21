@@ -2,8 +2,10 @@
   <v-container fluid>
     <v-row justify="center" align="center" class="mt-3 pa-5 white--text">
       <h1>
-        {{ splitNamed()[0]
-        }}<span class="logoStyle">{{ splitNamed()[1] }}</span>
+        {{ user.displayname ? splitNamed(user.displayname)[0] : ""
+        }}<span class="logoStyle">{{
+          user.displayname ? splitNamed(user.displayname)[1] : ""
+        }}</span>
       </h1>
       <v-spacer></v-spacer>
       <h3>{{ user.email }}</h3>
@@ -80,14 +82,14 @@ export default {
     },
   },
   methods: {
-    splitNamed: function() {
-      const len = this.user.displayname.length;
+    splitNamed: function(displayname) {
+      const len = displayname.length;
       const half = Math.ceil(len / 2);
-      const firstHalf = this.user.displayname
+      const firstHalf = displayname
         .split("")
         .slice(0, half)
         .join("");
-      const secondHalf = this.user.displayname
+      const secondHalf = displayname
         .split("")
         .slice(half, len)
         .join("");
