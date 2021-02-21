@@ -45,7 +45,8 @@
             class="mb-1"
             dark
           >
-            <v-card-title>{{
+            <v-card-title>{{ comment.displayname }}</v-card-title>
+            <v-card-subtitle>{{
               new Date(comment.datecommented).toLocaleTimeString(undefined, {
                 year: "numeric",
                 month: "numeric",
@@ -53,7 +54,7 @@
                 hours: "numeric",
                 minutes: "numeric",
               })
-            }}</v-card-title>
+            }}</v-card-subtitle>
             <v-card-text>{{ comment.comment }}</v-card-text>
           </v-card>
         </v-container>

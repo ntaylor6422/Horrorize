@@ -64,11 +64,12 @@ export default {
       if (this.password !== this.confirmPass)
         return alert("Passwords do not match");
 
-      await axios.post("/users/create", {
+      const newUser = await axios.post("/users/create", {
         email: this.email,
         displayname: this.displayname,
         password: this.password,
       });
+      this.$store.commit("setUser", newUser.data.data);
       this.handleClose();
     },
     handleClose: function() {
