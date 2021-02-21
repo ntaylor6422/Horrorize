@@ -1,18 +1,26 @@
+require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { User } = require("../models");
 
 exports.createUser = async (req, res) => {
+  const { email, password, displayname } = req.body;
   try {
-    const hashedPass = await bcrypt.hash(req.body.password, 10);
+    const hashedPass = await bcrypt.hash(password, 10);
     const newUser = await User.create({
-      email: req.body.email,
+      email: email,
       password: hashedPass,
-      displayname: req.body.displayname,
+      displayname: displayname,
       comments: [],
       ratings: [],
     });
 
+    const token = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
+      algorithm: "HS256",
+      expiresIn: "7d",
+    });
+
+    res.cookie("token", token, { httpOnly: true });
     res.status(201).json({
       status: "Success",
       data: {
@@ -38,10 +46,15 @@ exports.login = async (req, res) => {
 
   const token = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
     algorithm: "HS256",
-    expiresIn: process.env.ACCESS_TOKEN_LIFE,
+    expiresIn: "7d",
   });
 
   console.log("token:", token);
-  res.cookie("token", token, { maxAge: process.env.ACCESS_TOKEN_LIFE * 1000 });
-  res.end();
+  res.cookie("token", token, { httpOnly: true });
+  res.sendStatus(200);
+};
+
+exports.logout = (req, res) => {
+  res.clearCookie("token");
+  res.sendStatus(200);
 };
