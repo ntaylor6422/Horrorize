@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    view: "profile",
+    view: "list",
     movie: {},
     movies: [],
     movieConfig: {},
