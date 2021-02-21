@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-row justify="center" align="center" class="mt-3 pa-5">
+    <v-row justify="center" align="center" class="mt-3 pa-5 white--text">
       <h1>
         {{ splitNamed()[0]
         }}<span class="logoStyle">{{ splitNamed()[1] }}</span>
