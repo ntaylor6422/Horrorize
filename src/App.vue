@@ -21,7 +21,8 @@
       </v-list>
       <v-list v-else nav>
         <v-list-item>Welcome, {{ user.displayname }}</v-list-item>
-        <v-list-item link @click="handleProfile">Profile</v-list-item>
+        <v-list-item link @click="handleProfile(user)">Profile</v-list-item>
+        <v-list-item link @click="logout(user)">Logout</v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-overlay v-model="overlay">
@@ -105,10 +106,13 @@ export default {
     logoClick: function() {
       this.$store.dispatch("setView", "list");
     },
-    handleProfile: function() {
+    handleProfile: function(user) {
       this.$store.dispatch("setView", "profile");
-      this.$store.dispatch("refreshUserData", this.user);
+      this.$store.dispatch("refreshUserData", user);
       this.toggleDrawer();
+    },
+    logout: function(user) {
+      this.$store.dispatch("logout", user);
     },
   },
 };

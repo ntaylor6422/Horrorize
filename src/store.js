@@ -104,6 +104,10 @@ export default new Vuex.Store({
       const user = await axios.get(`/users/${person.email}`);
       commit("setUser", user.data.user);
     },
+    logout: async ({ commit }) => {
+      await axios.get("/users/logout");
+      commit("setUser", {});
+    },
   },
   getters: {
     getUser: (state) => {
