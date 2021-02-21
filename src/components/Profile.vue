@@ -8,7 +8,7 @@
         }}</span>
       </h1>
       <v-spacer></v-spacer>
-      <h3>{{ user.email }}</h3>
+      <h3>{{ user ? user.email : "" }}</h3>
     </v-row>
     <v-row>
       <v-tabs

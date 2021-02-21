@@ -15,12 +15,12 @@
       />
     </v-app-bar>
     <v-navigation-drawer app clipped dark v-model="drawer">
-      <v-list v-if="!user.displayname" nav>
+      <v-list v-if="!user" nav>
         <v-list-item link @click="toggleLog">Login</v-list-item>
         <v-list-item link @click="toggleReg">Register</v-list-item>
       </v-list>
       <v-list v-else nav>
-        <v-list-item>Welcome, {{ user.displayname }}</v-list-item>
+        <v-list-item>Welcome, {{ user ? user.displayname : "" }}</v-list-item>
         <v-list-item link @click="handleProfile(user)">Profile</v-list-item>
         <v-list-item link @click="logout(user)">Logout</v-list-item>
       </v-list>
