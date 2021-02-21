@@ -22,7 +22,7 @@
           </p>
         </section>
         <v-divider></v-divider>
-        <div v-if="user.displayname">
+        <div v-if="user">
           <h1>
             Comment and Rate
           </h1>

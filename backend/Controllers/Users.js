@@ -5,7 +5,7 @@ const { User } = require("../models");
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.params.email });
     res.status(201).json({
       status: "Success",
       data: user,
