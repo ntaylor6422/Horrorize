@@ -34,7 +34,7 @@
             v-for="comment in user.comments"
             :key="comment.id"
             dark
-            class="mb-3"
+            class="mb-1 mt-1"
           >
             <v-card-title>{{ comment.movietitle }}</v-card-title>
             <v-card-subtitle>{{
@@ -83,8 +83,14 @@ export default {
     splitNamed: function() {
       const len = this.user.displayname.length;
       const half = Math.ceil(len / 2);
-      const firstHalf = this.user.displayname.split("").slice(0, half);
-      const secondHalf = this.user.displayname.split("").slice(half + 1, len);
+      const firstHalf = this.user.displayname
+        .split("")
+        .slice(0, half)
+        .join("");
+      const secondHalf = this.user.displayname
+        .split("")
+        .slice(half, len)
+        .join("");
 
       return [firstHalf, secondHalf];
     },
