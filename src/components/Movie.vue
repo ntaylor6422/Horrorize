@@ -98,6 +98,7 @@ export default {
         movietitle: this.movie.title,
         comment: this.commentText,
         datecommented: new Date(),
+        displayname: this.user.displayname,
       });
       this.$store.dispatch("getDbMovie", this.movie.id);
     },
