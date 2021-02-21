@@ -7,15 +7,49 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-expansion-panels accordion>
+        <v-tabs
+          v-model="tab"
+          background-color="accent-4"
+          class="elevation-2"
+          dark
+          :centered="false"
+          :grow="false"
+          :vertical="false"
+          :right="false"
+          :prev-icon="prevIcon ? 'mdi-arrow-left-bold-box-outline' : undefined"
+          :next-icon="nextIcon ? 'mdi-arrow-right-bold-box-outline' : undefined"
+          :icons-and-text="icons"
+        >
+          <v-tabs-slider></v-tabs-slider>
+
+          <v-tab v-for="i in tabs" :key="i" :href="`#tab-${i}`">
+            Tab {{ i }}
+            <v-icon v-if="icons">mdi-phone</v-icon>
+          </v-tab>
+
+          <v-tab-item v-for="i in tabs" :key="i" :value="'tab-' + i">
+            <v-card flat tile>
+              <v-card-text>{{ text }}</v-card-text>
+            </v-card>
+          </v-tab-item>
+        </v-tabs>
+        <!-- <v-expansion-panels accordion>
           <v-expansion-panel>
             <v-card v-for="comment in user.comments" :key="comment.id" dark>
               <v-card-title>{{ comment.movietitle }}</v-card-title>
-              <v-card-subtitle>{{ comment.datecommented }}</v-card-subtitle>
+              <v-card-subtitle>{{
+              new Date(comment.datecommented).toLocaleTimeString(undefined, {
+                year: "numeric",
+                month: "numeric",
+                day: "numeric",
+                hours: "numeric",
+                minutes: "numeric",
+              })
+            }}</v-card-subtitle>
               <v-card-text>{{ comment.comment }}</v-card-text>
             </v-card>
           </v-expansion-panel>
-        </v-expansion-panels>
+        </v-expansion-panels> -->
       </v-col>
       <v-col>
         <v-expansion-panels accordion>
@@ -33,7 +67,12 @@
 
 <script>
 export default {
-  data: () => ({}),
+  data: () => ({
+    tab: null,
+    tabs: 2,
+    prevIcon: false,
+    nextIcon: false,
+  }),
   computed: {
     user: function() {
       return this.$store.state.user;
