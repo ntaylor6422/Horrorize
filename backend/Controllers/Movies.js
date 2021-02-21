@@ -6,7 +6,7 @@ exports.createMovie = async (req, res) => {
     res.status(201).json({
       status: "Success",
       data: {
-        user: newMovie,
+        movie: newMovie,
       },
     });
   } catch (err) {

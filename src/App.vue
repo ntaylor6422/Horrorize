@@ -15,65 +15,17 @@
       />
     </v-app-bar>
     <v-navigation-drawer app clipped dark v-model="drawer">
-      <v-list nav>
-        <v-list-item link @click="toggleLog">Log in</v-list-item>
+      <v-list v-if="!user.displayname" nav>
+        <v-list-item link @click="toggleLog">Login</v-list-item>
+        <v-list-item link @click="toggleReg">Register</v-list-item>
       </v-list>
     </v-navigation-drawer>
+    <v-overlay v-model="overlay">
+      <Register v-if="logState === 'Register'" />
+      <Login v-else-if="logState === 'Login'" />
+      <Profile v-else />
+    </v-overlay>
     <v-main app class="grey darken-2">
-      <v-dialog dark v-model="signin">
-        <v-card class="login">
-          <div class="formstyle mb-3">
-            <v-card-title>Log in</v-card-title>
-            <v-form class="formstyle">
-              <label for="emailInput">Email</label>
-              <input
-                type="email"
-                id="emailInput"
-                class="inputClass"
-                v-model="logEmail"
-              />
-              <label for="passInput">Password</label>
-              <input
-                type="password"
-                id="passInput"
-                class="inputClass"
-                v-model="logPass"
-              />
-              <v-btn @click="handleLogin" light class="signBtn">Log in</v-btn>
-            </v-form>
-          </div>
-          <v-divider></v-divider>
-          <div class="formstyle">
-            <v-card-title>Register</v-card-title>
-            <v-form class="formstyle">
-              <label for="emailInputSign">Email</label>
-              <input
-                type="email"
-                id="emailInputSign"
-                class="inputClass"
-                v-model="signEmail"
-              />
-              <label for="displayInputSign">Display Name</label>
-              <input
-                type="text"
-                id="displayInputSign"
-                class="inputClass"
-                v-model="signDisplay"
-              />
-              <label for="passInputSign">Password</label>
-              <input type="password" id="passInputSign" class="inputClass" />
-              <label for="passInputTwo">Repeat Password</label>
-              <input
-                type="password"
-                id="passInputTwo"
-                class="inputClass"
-                v-model="signPass"
-              />
-              <v-btn @click="handleSignup" light class="signBtn">Sign up</v-btn>
-            </v-form>
-          </div>
-        </v-card>
-      </v-dialog>
       <List v-if="list" />
       <Movie v-else />
     </v-main>
@@ -83,7 +35,9 @@
 <script>
 import List from "./components/List";
 import Movie from "./components/Movie";
-const axios = require("axios");
+import Register from "./components/Register";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
 
 export default {
   name: "App",
@@ -91,6 +45,9 @@ export default {
   components: {
     List,
     Movie,
+    Register,
+    Login,
+    Profile,
   },
   computed: {
     movies: function() {
@@ -98,6 +55,15 @@ export default {
     },
     list: function() {
       return this.$store.state.list;
+    },
+    logState: function() {
+      return this.$store.state.logState;
+    },
+    overlay: function() {
+      return this.$store.state.overlay;
+    },
+    user: function() {
+      return this.$store.state.user;
     },
   },
   mounted() {
@@ -107,7 +73,6 @@ export default {
   data: () => ({
     drawer: false,
     searchInput: "",
-    signin: null,
     logEmail: "",
     logPass: "",
     signEmail: "",
@@ -129,20 +94,12 @@ export default {
       this.drawer = !this.drawer;
     },
     toggleLog: function() {
-      this.signin = !this.signin;
+      this.$store.dispatch("setOverlay");
+      this.$store.dispatch("setLogState", "Login");
     },
-    handleLogin: async function() {
-      await axios.post("/users/login", {
-        email: this.logEmail,
-        password: this.logPass,
-      });
-    },
-    handleSignup: async function() {
-      await axios.post("/users/create", {
-        email: this.signEmail,
-        displayname: this.signDisplay,
-        password: this.signPass,
-      });
+    toggleReg: function() {
+      this.$store.dispatch("setOverlay");
+      this.$store.dispatch("setLogState", "Register");
     },
     logoClick: function() {
       this.$store.state.list = true;

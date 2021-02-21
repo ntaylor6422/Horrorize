@@ -14,6 +14,9 @@ export default new Vuex.Store({
     apiBaseUrl: "",
     apiSize: [],
     dbMovie: {},
+    logState: "Login",
+    overlay: false,
+    user: {},
   },
   mutations: {
     increment(state) {
@@ -39,6 +42,15 @@ export default new Vuex.Store({
     },
     setDbMovie(state, movie) {
       state.dbMovie = movie;
+    },
+    setOverlay(state) {
+      state.overlay = !state.overlay;
+    },
+    setLogState(state, log) {
+      state.logState = log;
+    },
+    setUser(state, user) {
+      state.user = user;
     },
   },
   actions: {
@@ -81,6 +93,12 @@ export default new Vuex.Store({
       const movie = await axios.get(`/movie/${movieid}`);
       console.log("from the getter in the store", movie);
       commit("setDbMovie", movie.data);
+    },
+    setOverlay: ({ commit }) => {
+      commit("setOverlay");
+    },
+    setLogState: ({ commit }, log) => {
+      commit("setLogState", log);
     },
   },
 });

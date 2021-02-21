@@ -51,7 +51,17 @@ exports.login = async (req, res) => {
 
   console.log("token:", token);
   res.cookie("token", token, { httpOnly: true });
-  res.sendStatus(200);
+  res.status(200).json({
+    status: "Success",
+    data: {
+      user: {
+        email: user.email,
+        displayname: user.displayname,
+        comments: user.comments,
+        ratings: user.ratings,
+      },
+    },
+  });
 };
 
 exports.logout = (req, res) => {
