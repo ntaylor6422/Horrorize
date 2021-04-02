@@ -29,7 +29,7 @@
               v-model="password"
               label="Password"
               type="password"
-              :rules=""
+              :rules="passwordRules"
               required
             ></v-text-field>
           </v-col>
@@ -38,6 +38,7 @@
               v-model="confirmPass"
               label="Confirm Password"
               type="password"
+              :rules="confirmPasswordRules"
               required
             ></v-text-field>
           </v-col>
