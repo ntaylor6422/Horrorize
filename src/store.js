@@ -68,6 +68,7 @@ export default new Vuex.Store({
       commit("setMovie", movie.data);
     },
     getHorrors: async ({ commit }) => {
+      console.log(movieKey, process.env.VUE_APP_MOVIE_API);
       const url = `https://api.themoviedb.org/3/search/movie?api_key=${movieKey}&language=en-US&query=horror&page=1&include_adult=false`;
       const movies = await axios.get(url);
       commit("setMultiMovies", movies.data.results);
