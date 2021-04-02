@@ -17,4 +17,4 @@ mongoose
     });
   });
 
-module.exports = apiKey;
+module.exports.movieKey = apiKey;

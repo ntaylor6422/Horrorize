@@ -2,7 +2,7 @@ require("dotenv").config();
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import apiKey from "../server";
+import movieKey from "../server";
 //const apiKey = process.env.MOVIE_API;
 
 Vue.use(Vuex);
@@ -58,17 +58,17 @@ export default new Vuex.Store({
   actions: {
     getMovie: async ({ commit }, title) => {
       const newTitle = title.split(" ").join("%20");
-      const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${newTitle}&page=1&include_adult=false`;
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=${movieKey}&language=en-US&query=${newTitle}&page=1&include_adult=false`;
       const movie = await axios.get(url);
       commit("setMultiMovies", movie.data.results);
     },
     getMovieById: async ({ commit }, id) => {
-      const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`;
+      const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${movieKey}&language=en-US`;
       const movie = await axios.get(url);
       commit("setMovie", movie.data);
     },
     getHorrors: async ({ commit }) => {
-      const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=horror&page=1&include_adult=false`;
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=${movieKey}&language=en-US&query=horror&page=1&include_adult=false`;
       const movies = await axios.get(url);
       commit("setMultiMovies", movies.data.results);
     },
@@ -79,8 +79,7 @@ export default new Vuex.Store({
       commit("setView", view);
     },
     getApiConfig: async ({ commit }) => {
-      const url =
-        "https://api.themoviedb.org/3/configuration?api_key=fa47395aee6257d86b59cef66174b632";
+      const url = `https://api.themoviedb.org/3/configuration?api_key=${movieKey}`;
       const movieConfig = await axios.get(url);
       commit("setMovieConfig", movieConfig.data);
       commit("setBaseUrl", movieConfig.data.images.base_url);
