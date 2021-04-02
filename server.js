@@ -1,7 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const app = require("./app");
-const apiKey = process.env.MOVIE_API;
 
 mongoose
   .connect(process.env.DB_URL, {
@@ -16,5 +15,3 @@ mongoose
       console.log("Listening");
     });
   });
-
-module.exports.movieKey = apiKey;

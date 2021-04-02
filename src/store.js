@@ -2,8 +2,7 @@ require("dotenv").config();
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import movieKey from "../server";
-//const apiKey = process.env.MOVIE_API;
+const movieKey = process.env.VUE_APP_MOVIE_API;
 
 Vue.use(Vuex);
 
