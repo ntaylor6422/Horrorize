@@ -1,4 +1,3 @@
-require("dotenv").config();
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
@@ -62,8 +61,10 @@ export default new Vuex.Store({
       commit("setMultiMovies", movie.data.results);
     },
     getMovieById: async ({ commit }, id) => {
+      console.log(id);
       const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${movieKey}&language=en-US`;
       const movie = await axios.get(url);
+      console.log(movie.data);
       commit("setMovie", movie.data);
     },
     getHorrors: async ({ commit }) => {
