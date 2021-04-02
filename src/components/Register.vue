@@ -55,19 +55,27 @@
 <script>
 import axios from "axios";
 export default {
+  // computed: {
+  //   regex: function() {
+  //     return new RegExp(
+  //       "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+  //     );
+  //   },
+  // },
   data: () => ({
     email: "",
     password: "",
     confirmPass: "",
     displayname: "",
     passwordRules: [
-      (value) => !!value || "Please type password.",
-      (value) => (value && value.length >= 8) || "minimum 6 characters",
+      //(value) => !!value || "Please type password.",
+      //(value) => (value && value.length >= 8) || "minimum 8 characters",
       (value) =>
-        value &&
-        value.match(
-          /"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"/g
-        ),
+        (value &&
+          RegExp(
+            "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+          ).test(value)) ||
+        "must contain 1 letter, 1 number, and a special character [#?!@$%^&*-]",
     ],
     confirmPasswordRules: [
       (value) => !!value || "type confirm password",
