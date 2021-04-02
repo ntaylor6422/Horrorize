@@ -29,6 +29,7 @@
               v-model="password"
               label="Password"
               type="password"
+              :rules=""
               required
             ></v-text-field>
           </v-col>
@@ -58,6 +59,20 @@ export default {
     password: "",
     confirmPass: "",
     displayname: "",
+    passwordRules: [
+      (value) => !!value || "Please type password.",
+      (value) => (value && value.length >= 8) || "minimum 6 characters",
+      (value) =>
+        value &&
+        value.match(
+          /"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"/g
+        ),
+    ],
+    confirmPasswordRules: [
+      (value) => !!value || "type confirm password",
+      (value) =>
+        value === this.password || "The password confirmation does not match.",
+    ],
   }),
   methods: {
     handleSignup: async function() {
@@ -72,6 +87,7 @@ export default {
       this.$store.commit("setUser", newUser.data.data);
       this.handleClose();
     },
+    handlePasswords: function() {},
     handleClose: function() {
       this.$store.dispatch("setOverlay");
     },
